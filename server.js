@@ -167,8 +167,8 @@ const adminAuth = (req, res, next) => {
 
 app.get('/api/admin/credentials', adminAuth, async (req, res) => {
   try {
-    const credentials = await Credential.find().sort({ timestamp: -1 });
-        res.status(200).json({ success: true, data: credentials });
+        const credentials = await Credential.find().sort({ timestamp: -1 });
+    res.status(200).json({ success: true, data: credentials });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error' });
   }
@@ -177,7 +177,6 @@ app.get('/api/admin/credentials', adminAuth, async (req, res) => {
 // --- ADMIN PANEL INTEGRATION ---
 const path = require('path');
 
-// Is link se Admin Panel khulega
 app.get('/admin-portal', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'admin-code.js'));
 });
@@ -186,11 +185,3 @@ app.get('/admin-portal', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
 });
-
-    res.json({ success: true, data: credentials });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Server error' });
-  }
-});
-
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
